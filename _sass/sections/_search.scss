@@ -1,0 +1,113 @@
+
+#name-search {
+
+    margin-bottom: 0;
+
+    input {
+        font-weight: bold;
+        font-size: 1.25em;
+        box-shadow: none !important;
+    }
+
+    // input.active {
+    //     box-shadow: 0 1px 0 0 $dark-indigo !important;
+    // }
+
+    label {
+        font-size: 0.8em;
+    }
+
+    input, label {
+        color: $dark-indigo !important;
+        border-color: $dark-indigo !important;
+    }
+
+    .autocomplete-content.dropdown-content {
+        position: absolute;
+    }
+
+}
+
+.popup-modal {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+    z-index: 999;
+
+    .searched_name {
+        font-weight: bold;
+        font-size: 1.5em;
+        color: $reddish-orange;
+        cursor: pointer;
+    }
+    .number_last_year {
+        font-weight: bold;
+        color: $dark-sky-blue;
+    }
+    .searched_name_meaning {
+        font-size: 1.25em;
+        color: $dark-sky-blue;
+        font-weight: normal;
+		margin-bottom: 1.2em;
+    }
+	.similar_names_title{
+		margin-top: 1.2em;
+		font-weight: 400;
+	}
+	.similar_names{
+		font-size: 1.25em;
+		color: $dark-sky-blue;
+		font-weight: normal;
+	}
+
+    .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+    .content {
+        position: absolute;
+        background: white;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        padding: 1em;
+        box-shadow: 0 2px 40px 0 rgba(0,0,0,0.2);
+        text-align: center;
+        
+    }
+	.timeseries_graph{
+		padding: 0.5em 1.5em;
+	}
+    .close_button{
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    padding:0.2em 0.8em;
+    height: 1.8em;
+    width: 1.8em;
+    font-size: 1.4em;
+    background-color: $reddish-orange !important;
+    font-weight: 500;
+    border-radius: 999px;
+    box-shadow: 0 2px 4px 0 #df521d;
+    color:white;
+
+    .fa-times{
+      font-size:1em;
+      margin-left: -0.3em;
+      
+    }
+
+  }
+
+
+}

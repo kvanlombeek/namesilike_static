@@ -1,0 +1,130 @@
+[v-cloak] {display:none}
+
+#waiting_for_recommendations {
+  
+  h2{
+    text-align: center;
+    font-size: 1.5em;
+  }
+  
+  #white_box{
+    background-color: white;
+    padding:2em;
+    
+    box-shadow: 1px 1px 8px 0 #bfae11;
+    
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 300px;
+    height: auto;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    
+    #progress_bar_outer{
+      background-color: $dark-sky-blue;
+    }
+    #progress_bar_inner{     
+      background-color: darken($dark-sky-blue, 30);
+    }
+    
+    table{
+      margin-top: 10px;
+      
+      td{
+        padding: 0.5em;
+      }
+
+      .icon_column{
+        width:60px;
+        padding-left:20px;
+        padding-right:0px;
+        
+        .div_surrounding_icon {
+            color: white;
+            background: $dark-sky-blue;
+            border-radius: 50%;
+            width: 2em;
+            height: 2em;
+            line-height: 1.45em;
+            text-align: center;  
+          }
+          .fa-lg{
+            transform: translateX(5%) translateY(20%);
+            -webkit-transform: translateX(5%) translateY(20%);
+          }
+      }
+    }
+  }
+
+}
+  
+
+/**<span>.</span><span>.</span><span>.</span>**/
+@keyframes blink {
+    /**
+     * At the start of the animation the dot
+     * has an opacity of .2
+     */
+    0% {
+      opacity: .2;
+    }
+    /**
+     * At 20% the dot is fully visible and
+     * then fades out slowly
+     */
+    20% {
+      opacity: 1;
+    }
+    /**
+     * Until it reaches an opacity of .2 and
+     * the animation can start again
+     */
+    100% {
+      opacity: .2;
+    }
+}
+
+.saving span {
+    /**
+     * Use the blink animation, which is defined above
+     */
+    animation-name: blink;
+    /**
+     * The animation should take 1.4 seconds
+     */
+    animation-duration: 1.4s;
+    /**
+     * It will repeat itself forever
+     */
+    animation-iteration-count: infinite;
+    /**
+     * This makes sure that the starting style (opacity: .2)
+     * of the animation is applied before the animation starts.
+     * Otherwise we would see a short flash or would have
+     * to set the default styling of the dots to the same
+     * as the animation. Same applies for the ending styles.
+     */
+    animation-fill-mode: both;
+}
+
+.saving span:nth-child(2) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .2s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .2s;
+}
+
+.saving span:nth-child(3) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .4s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .4s;
+}

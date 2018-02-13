@@ -1,0 +1,309 @@
+.waves-effect.waves-white .waves-ripple {
+  background-color: rgba(255, 255, 255, 0.65);
+}
+.waves-effect.waves-reddish-brown .waves-ripple {
+  background-color: rgba(249, 97, 40, 0.65);
+}
+.waves-effect.waves-dark-sky-blue .waves-ripple {
+  background-color: rgba(74, 144, 226, 0.65);
+}
+
+#spinning_wheel_whole_page {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+    z-index: 999;
+
+    & > div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+    } 
+
+}
+
+.overlay_containter{
+  
+  position: fixed;
+  z-index: 999;
+  height: 5em;
+  
+  
+  @media only screen and (min-width: 993px){
+    width:70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    top: 2em;
+  }
+  
+  @media only screen and (min-width: 601px){
+    width:85%;
+    margin-left: 8%;
+    margin-right: 7%;
+    top: 2em;
+  }
+  
+  @media screen and (max-width: 601px){
+    width:100%;
+    margin-left: 0%;
+    margin-right: 0%;
+    top: 0em;
+  }
+  
+  .language_toggle{
+    text-decoration: underline;
+    display:inline-block;
+    margin-top:2em;
+    margin-left:2em;
+  }
+	
+  .nav_buttons_right{
+    text-align: right;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-right: 1em;
+    margin-top: 1em;
+    
+  .red_button{
+    background-color: $reddish-orange !important; 
+    border-radius: 100%;
+    box-shadow: 0 3px 6px 0 $reddish-orange;
+  }  
+  .red_button.primary{
+    
+    height:4em;
+    width:4em;
+    position: relative;
+    display: inline-block;
+    line-height: 4em;
+    text-align:center;
+    vertical-align:middle;
+    display:inline-block;
+    margin-left: 0.5em;
+
+    i{
+          color: white;
+          line-height: inherit;
+          font-size: 2.5em;
+      }
+  }
+    
+  .red_button.secondary{
+      
+    height:3em;
+    width:3em;
+    position: relative;
+    display: inline-block;
+    line-height: 3em;
+    text-align:center;
+    vertical-align:middle;
+    display:inline-block;
+    margin-left: 0.5em;
+      
+    i{
+          color: white;
+          line-height: inherit;
+          font-size: 1.3em;
+      }
+    }  
+  }
+}
+
+.header {
+
+    h1 {
+        font-family: 'Josefin Sans', 'Roboto', san-serif;
+        font-weight: 700;
+        font-size: 3em;
+    }
+    @media (max-width: 540px) {
+      h1{
+        font-size: 2.5em;
+      }
+    }
+  
+    p {
+        [v-cloak] > * { display: none; }
+        [v-cloak]::before { content: "Laat <b>statistiek</b> en een <b>uitgekiend algoritme</b> je helpen bij het vinden van een geschikte babynaam"; }
+        font-size: 1.25em;
+    }
+
+}
+
+#homepage {
+
+    padding-top: 15vw;
+
+    @media (max-width: 540px) {
+        padding-top: 25vw;
+    }
+
+    .title_and_tagline{
+        margin-bottom: 0px;
+    }
+    
+    .steps {
+        margin-bottom: 0;
+        background: white;
+        padding: 1em 1em 2em 2em;
+        @media (max-width: 540px) {
+            padding-bottom: 2em;
+        }
+        box-shadow: 1px 1px 8px 0 #bfae11;
+
+    }
+    .steps_title{
+      font-weight: bold;
+      padding-bottom: 1em;
+      text-align: left;
+    }
+    .step{
+      text-align: left;
+    }
+    .row.call2action{
+       
+
+        a {
+            margin-top: -1.5em;
+            padding: 1em 1.5em;
+            height: auto;
+            line-height: 100%;
+            font-size: 1.3em;
+            background-color: $reddish-orange !important;
+            font-weight: 500;
+            border-radius: 999px;
+            box-shadow: 0 2px 4px 0 #df521d;
+        }
+    }
+
+//    .step {    
+//        @media (min-height: 600px) {
+//            padding: 1em 1em;   
+//        }
+//        padding-top: 0em;
+//        font-weight: bold;
+//        position: relative;
+//
+//        @media (max-width: 540px) and (min-width: 400px) {
+//            padding-bottom: 0;
+//        }
+//
+//        .description {
+//            display: block;
+//            @media (max-width: 540px) {
+//                text-align: left !important;
+//                padding-left: 1em;
+//                margin-bottom: 3.5em;
+//            }
+//            @media (max-width: 400px) {
+//                padding-left: 1em;
+//                padding-top: 0;
+//                padding-bottom: 0;
+//                margin-bottom: 0.5em;
+//            }
+//
+//        }
+//
+//        .visual {
+//            
+//            height: 1em;
+//            font-size: 5em;
+//            line-height: 1em;
+//            font-family: 'Josefin Sans', 'Roboto', san-serif;
+//            color: $dark-sky-blue;
+//
+//            @media (max-width: 540px) {
+//                position: absolute;
+//                right: 3rem;
+//                top: 0%;
+//                transform: translateY(-20%);
+//                -webkit-transform: translateY(-20%);
+//                font-size: 4em;
+//            }
+//            @media (max-width: 400px) {
+//                transform: translateY(-15%);
+//                -webkit-transform: translateY(-15%);
+//                font-size: 3em;
+//                display: none;
+//            }
+//
+//        }
+//        &:first-child .visual {
+//            box-sizing: border-box;
+//            font-size: 6em;
+//            min-width: 65px;
+//            @media (max-width: 400px) {
+//                transform: translateY(-25%);
+//                -webkit-transform: translateY(-25%);
+//                min-width: 50px;
+//            }
+//            border-top: 0.2em solid transparent;
+//            background-image: url('../images/ic-geslacht.svg');
+//            background-repeat: no-repeat;
+//            background-position: center center;
+//            background-size: contain;
+//        }
+//        @media (min-width: 540px) {
+//            &:not(:last-child) {
+//                border-right: 1px solid rgba(219, 157, 36, 0.34);
+//            }
+//        }
+//        .unit {
+//            color: $dark-sky-blue;
+//            display: block;
+//            font-size: 2rem;
+//            line-height: 1rem;
+//        }
+//
+//    }
+
+    .row.call_to_actions {
+		
+		
+		
+        a {
+			width: 13em;
+			margin:0.5em;
+            padding: 0.75em 1em;
+            height: auto;
+            line-height: 100%;
+            font-size: 1.2em;
+            font-weight: 500;
+			border-radius: 999px;
+
+			.button_icon, .button_text{
+				text-align: left;
+				display:inline-block;
+				
+				i {
+					font-size:2em;
+					margin-right: 0.2em;
+				};
+			}
+		}
+			
+		a.primary_call{
+			background-color: $reddish-orange !important;
+			
+			box-shadow: 0 2px 4px 0 #df521d;
+		}
+      
+		a.secondary_call{
+			background-color: white !important;
+			box-shadow: 0;
+			color: $reddish-orange !important;
+		}
+
+			
+
+    }
+
+}

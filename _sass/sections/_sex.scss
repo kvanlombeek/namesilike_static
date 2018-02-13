@@ -1,0 +1,49 @@
+[v-cloak] {display:none}
+
+#ask_sex_for_suggestions {
+
+    padding-top: 8vw;
+
+    .sex-buttons {
+        box-shadow: 1px 1px 8px 0 #bfae11;
+    }
+
+    .sex-buttons .col {
+        padding: 0;
+    }
+
+    .sex-buttons a {
+
+        padding-top: 12em;
+        padding-bottom: 1.5em;
+        height: auto !important;
+        width: 100%;
+
+        @media (max-width: 400px) {
+            padding-top: 6em;
+        }
+
+        &.boy {
+            background-image: url('../images/boy.svg');
+            background-position: center 35%;
+            background-repeat: no-repeat;
+            background-size: auto 30%;
+            background-color: $reddish-orange !important;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            box-shadow: none;
+
+        }
+        &.girl {
+            background-image: url('../images/girl.svg');
+            background-position: center 35%;
+            background-repeat: no-repeat;
+            background-size: auto 30%;
+            color: $dark-sky-blue;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            box-shadow: none;
+        }
+    }
+
+}

@@ -1,0 +1,95 @@
+/* Remove 300ms click delay on Chrome, Firefox and IE [1]. Add the below to
+   your <head> to disable the click delay for iOS 9.3+ and other modern
+   browsers [1,2,3] as well as enable GPU rasterization in Chrome [4].
+
+        <meta name="viewport"
+            content="width=device-width,minimum-scale=1,initial-scale=1">
+
+   [1] http://developer.telerik.com/featured/300-ms-click-delay-ios-8/
+   [2] https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away
+   [3] http://patrickhlauke.github.io/touch/tests/results/
+   [4] https://www.chromium.org/developers/design-documents/chromium-graphics/how-to-get-gpu-rasterization
+*/
+
+a, button, label {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+/* Device breakpoints.
+
+   Starting at `tablet-and-up`, the grid will transform into a columnar layout.
+   Starting at `laptop-and-up`, the webapp will scale to accommodate a larger
+   presumed viewing distance. According to [1], the iPhone 6 Plus has a width
+   of 736px in landscape mode, which is the largest in the smartphone category.
+   Excluding laptop-sized tablets such as the iPad Pro 12.9 and the Microsoft
+   Surface, the largest tablet resolutions go up to 1280px.
+
+   [1] http://mydevice.io/devices/
+*/
+
+// Common device widths.
+$mobile-s: 320px; // E.g., iPhone 4, iPhone 5.
+$mobile-m: 375px; // E.g., iPhone 6.
+$mobile-l: 414px; // E.g., iPhone 6 Plus.
+$tablet: 737px;   // Tablet breakpoint.
+$ipad: 768px;     // E.g., iPad (other).
+$ipadpro: 1024px; // E.g., iPad Pro 12.9.
+$laptop: 1281px;  // Laptop breakpoint.
+$desktop: 1920px;
+$fourk: 2560px;
+
+// Breakpoints.
+$up-to-tablet: "screen and (max-width: #{$tablet - 1px})";
+$tablet-and-up: "screen and (min-width: #{$tablet}), print";
+$laptop-and-up: "screen and (min-width: #{$laptop})";
+
+/* Typography and scaling.
+
+   We set the root `font-size` to a percentage so that the site will scale
+   according to the browser's font size, and to 62.5% specifically so that 1rem
+   corresponds to 10px under the default browser font size of 16px.
+   Additionally, we scale the root `font-size` on the `laptop-and-up`
+   breakpoint so that the entire site scales according with the updated value
+   of 1rem.
+*/
+
+html {
+
+    font-size: 62.5%;
+    font-family: $text-family;
+    font-weight: $text-weight-normal;
+    line-height: $text-line-height;
+    color: $text-color;
+    background: $text-background;
+    background-image: url('../images/pattern.svg'), radial-gradient(circle at 50% 50%, #ffd842, #ffc32a);
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: repeat-y;
+    
+    @media #{$up-to-tablet} {
+      font-size: (14 / 18) * 62.5%;
+    }
+    @media #{$laptop-and-up} {
+        line-height: $text-line-height-laptop-and-up;
+        font-size: ($text-size-laptop-and-up / $text-size) * 62.5%;
+    }
+
+}
+
+body {
+    font-size: $text-size;
+}
+
+h1, h2, h3 {
+    font-weight: $text-weight-bold;
+}
+
+h4, h5, h6 {
+    font-weight: $text-weight-normal;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}

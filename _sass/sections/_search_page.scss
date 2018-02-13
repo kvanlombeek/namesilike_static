@@ -1,0 +1,42 @@
+[v-cloak] {display:none}
+
+#search_page {
+
+  text-align: center;
+  
+  label: 1em;
+  
+  padding-top: 20vw;
+  
+  @media (max-width: 540px) {
+    padding-top: 20vw;
+  }
+  .input-field{
+    min-width:100px;
+    display: inline-block;
+  }
+  .confirm_search_button{
+    display: inline-block;
+    padding:0.2em 0.8em;
+    height: 2em;
+    width: 2em;
+    font-size: 1.5em;
+    background-color: $reddish-orange !important;
+    font-weight: 500;
+    border-radius: 999px;
+    box-shadow: 0 2px 4px 0 #df521d;
+    color:white;
+
+    .fa-search{
+      font-size:1em;
+      margin-left: -0.3em;
+      
+    }
+  
+  }
+  
+}
+
+#my_list{
+  padding-top: 20vw;
+}

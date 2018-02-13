@@ -1,0 +1,33 @@
+/* Brand. */
+
+$brand: "Names I Like";
+
+/* Colours. */
+
+// In the Pocket colour palette.
+$sun-yellow: #ffd83b;
+$dark-indigo: #211551;
+$reddish-orange: #f96128;
+$dark-sky-blue: #4a90e2;
+$green-saved: #4caf50;
+
+// Dark-on-light fore- and background colours, and alternatives.
+$fg-color: $dark-indigo;
+$bg-color: $sun-yellow;
+
+// Text colours.
+$text-color: $fg-color;
+$text-background: $bg-color;
+
+/* Typography. */
+$text-family: 'Raleway', 'San Fransisco', 'Helvetica Neue', 'Calibri Light', sans-serif;
+$text-size: 1.8rem; 
+$text-line-height: 1.5;
+$text-size-laptop-and-up: 2.0rem;
+$text-line-height-laptop-and-up: 1.58;
+$text-weight-normal: 300;
+$text-weight-bold: 500;
+
+/* Scaling. */
+
+$scale-step: 1.25;

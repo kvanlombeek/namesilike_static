@@ -1,0 +1,695 @@
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Names I Like | Namen voor je baby op maat</title>
+      <meta name="description" content="Met ons algoritme was naar een naam voor je baby zoeken nog nooit zo leuk! We verzamelen alle babynaam stastieken en geven persoonlijke suggesties!">
+      <meta name="google" value="notranslate">
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			<!-- Compiled and minified CSS -->
+<!--       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"> -->
+      <link rel="stylesheet" href="css/materialize.min.css">
+      <link rel="stylesheet" href="css/font-awesome.min.css">
+      <link rel="stylesheet" href="css/animate.min.css">
+      <link rel="stylesheet" href="css/app.css">
+      <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:700|Raleway:300,500,700" rel="stylesheet">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+    </head>
+
+    <body id="app">
+        <div id="spinning_wheel_whole_page" v-if="spinner_active">
+            <div>
+            <div class="preloader-wrapper big active">
+              <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+              <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+              <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+              <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+        
+            
+      <!-- Overlay menu button -->
+      <!-- ******** -->
+      <div class="overlay_containter" v-show="active_section == 'homepage' || active_section == 'recommended_names' || active_section == 'searchpage' || active_section == 'my_list' || active_section == 'info' ">
+            <p class="language_toggle" v-on:click="change_language" v-show="active_section == 'homepage'">
+              <i class="fa fa-globe" aria-hidden="true"></i> BE ({{$locale.current()}})
+            </p>
+		  
+		  	<div class="nav_buttons_right">
+		      <a class="red_button secondary" v-on:click="navigate('info')"><i class="fa fa-info" aria-hidden="true"></i></a>
+              <a class="red_button secondary" v-on:click="navigate('searchpage')"><i class="fa fa-line-chart" aria-hidden="true"></i></a>
+              <a class="red_button primary" v-on:click="navigate('homepage')"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+		  	</div>
+      </div>
+      
+      <!-- Homepage -->
+      <!-- ******** -->
+      <div id="homepage" class="container" v-show="active_section == 'homepage'">
+        <div class="row title_and_tagline">
+          <div class="col s12 center-align header" >
+            <h1>Names I Like</h1>
+            <p><span v-cloak>{{{ $t("main.tagline") }}}</span></p>
+          </div>
+        </div>
+        
+        <div class="row steps" v-on:click="active_section='ask_sex_for_suggestions' ">
+          <div class="col s12" >
+            <p class="step">{{{$t("main.procedure.step_1") }}}</p>
+            <p class="step">{{{$t("main.procedure.step_2") }}}</p>
+            <p class="step">{{{$t("main.procedure.step_3") }}}</p>
+          </div>
+        </div>
+        <div class="row call2action">
+          <div class="col s12 center-align">
+            <a class="fuction_buttons waves-effect waves-white btn" v-on:click="active_section='ask_sex_for_suggestions' ">{{ $t("main.start") }}</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Info page -->
+      <!-- ******** -->
+      <div id="info_page" class="container" v-show="active_section == 'info'">
+        <div class="row title_and_tagline">
+          <div class="col s12 center-align header" >
+            <h1>What's in a name?</h1>
+          </div>
+          <div class="col s12 center-align info_text">
+            <p>A lot! A name has so many characteristics.</p>
+            <p>Amongst the most obvious ones are the <b>length</b>, the <b>origin</b> and the <b>meaning</b>. Vik is close to Vic, but very different compared to Antonio don't you think?</p>
+            <p>Another interesting characteristic is the popularity of the name over time. You can use this time series to give names labels such as <b>popular</b> or <b>trending</b>.</p> 
+            <p><img src='images/ranking_voorbeeld_namen.png' id="timeseries_graph"></p>
+            <p>We also use all the <b>historical clicks</b> on the website. Users clicking on Guillaume also often click on Antoine, hence we know that these two are related to each other. </p>
+            <p>We combine the characteristics of a name and the historical clicks, to build a <b>recommender system</b>. This is a very well known subject in the <b>data science</b> field.</p>
+            <p>We hope you liked it!</p>
+            
+            <table style="width:100%">
+              <tr>
+                <td class='container_profile_pic'><img src='images/kasper_profile_picture.jpg' class='profile_picture'></td>
+                <td class='container_bio'>This app is developped by <b>Kasper Van Lombeek</b>. He co-founded the company <u><a class='link' href='http://www.rockestate.be' target="_blank">Rockestate</a></u><br>
+                  <a href='https://twitter.com/kvanlombeek' class='social_media_link' target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                  <a href='https://www.linkedin.com/in/kasper-van-lombeek-679aa927/' class='social_media_link' target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                  
+                </td> 
+              </tr>
+            </table>
+                        
+          </div>
+        </div>
+        
+      </div>
+        
+<!--
+		<div class="row call_to_actions">
+          <div class="col s12 center-align">
+            <a class="waves-effect waves-white btn primary_call" v-on:click="navigate('explaining_algorithm')">
+				<div class="button_icon"><i class="fa fa-magic" aria-hidden="true"></i></div>
+				<div class="button_text">{{{ $t("main.call2action_button_1") }}}</div>
+			  </a>
+          </div>
+        </div>
+-->
+           
+<!--
+        <div class="row call_to_actions">
+          <div class="col s12 center-align">
+            <p>{{{ $t("main.tagline_2") }}}</p>
+			<a class="waves-effect waves-white btn secondary_call" v-on:click="navigate('searchpage')">
+				<div class="button_icon"><i class="fa fa-line-chart" aria-hidden="true"></i></div>
+				<div class="button_text">{{{ $t("main.call2action_button_2") }}}</div>
+			  </a> 
+          </div>
+        </div>
+-->
+    
+
+      
+      
+      <!-- Search page -->
+      <!-- ******** -->
+      <div id="search_page" class="container" v-show="active_section == 'searchpage'" v-cloak>  
+        <div class="row">
+          <div class="col s12 center-align header" >
+            <h2>{{ $t("search_page.title") }}</h2>
+            <p>{{{ $t("search_page.tagline") }}}</p>
+          </div>
+        </div>
+        <div id="name-search" class="row">
+<!--
+            <div id="div_search_button" v-show="!search_button.search_field_active">
+              <a id="search_button" class="waves-effect waves-white btn" v-on:click="search_button.search_field_active=true"><i class="fa fa-search" aria-hidden="true"></i></a>
+            </div>
+-->
+            <div class="input-field">
+              <form autocomplete="off" v-on:submit.prevent>
+                <input type="text"  v-model="searched_name.name_entered_for_search" id="autocomplete-input" class="autocomplete">
+                <label for="autocomplete-input"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;{{ $t("main.search") }}</label>
+              </form>
+            </div>
+            <div class="confirm_search_button"  v-on:click="search_by_name">
+                <i class="fa fa-search" aria-hidden="true"></i> 
+            </div> 
+        </div>
+      
+        <div class="searched-name popup-modal" v-show="searched_name.show">
+          <div class="bg" v-on:click="searched_name.show = false"></div>
+          <div class="content">
+			<div class="close_button"  v-on:click="searched_name.show = false">
+                <i class="fa fa-times" aria-hidden="true"></i> 
+            </div> 
+            <div class="searched_name">{{searched_name.name_entered_for_search}}</div>
+            <div id="timeseries_graph_searched_name" class="timeseries_graph center-align "></div>
+            <div class="similar_names_title" v-if="searched_name.similar_names!=''">{{ $t("results.similar_info") }}</div>
+            <div class="similar_names">{{searched_name.similar_names}}</div>
+            <div class="similar_names_title">{{$t("results.meaning_title") }}</div> 
+            <div class="searched_name_meaning">{{searched_name.meaning}}</div>
+            
+          </div>
+        </div>
+      </div>
+
+            
+      <!-- Ask sex for suggestion page -->
+      <!-- ******** -->
+      <div id="ask_sex_for_suggestions" class="container" v-if="active_section=='ask_sex_for_suggestions'" v-cloak>
+        <div class="valign-wrapper">
+          <div class="valign" style="width:100%">
+            <div class="row">
+              <div class="col s12 center-align header">
+                <h2 class="center-align">{{ $t("sex.title") }}</h2>
+                <p>{{{ $t("sex.tagline") }}}</p>
+              </div>
+            </div>
+            <div class="row sex-buttons">
+              <div class="col s12 m6 center-align">
+                <a class="select_sex_button waves-effect waves-white btn red lighten-1 boy" v-on:click="init_multiple_choice('M')"><!-- <i class="fa fa-mars" aria-hidden="true"></i>&nbsp;&nbsp; -->{{{ $t("sex.boy") }}}</a>
+              </div>
+              <div class="col s12 m6 center-align">
+                <a class="select_sex_button waves-effect waves-dark-sky-blue btn white lighten-1 girl" v-on:click="init_multiple_choice('F')"><!-- <i class="fa fa-venus" aria-hidden="true"></i>&nbsp;&nbsp; -->{{{ $t("sex.girl") }}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- List view -->
+      <!-- ******** -->
+<!--
+      <div id="my_list" class="container" v-show="active_section == 'my_list'">
+        <div class="row">
+          <div class="col s12 center-align header" >
+            <h2>Your personal list</h2>
+            <p>Coming soon</p>
+          </div>
+        </div>
+      </div>
+-->
+      
+      <!-- Asking model feedback -->
+      <!-- ******** -->
+      <div id="asking_feedback" class="container" v-if="active_section=='asking_feedback'" v-cloak>
+            <div class="row header-parent">
+              <div class="col s12 center-align header">
+                <p class="label">{{ $t("choice.question") }}</p>
+                <p class="number">{{(multiple_choice.active_round - 1) * multiple_choice.questions_per_round + multiple_choice.active_question}}/{{multiple_choice.total_rounds * multiple_choice.questions_per_round}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12 center-align choices">
+                <p><a class="waves-effect waves-reddish-brown btn suggested_name_button btn white lighten-1" v-on:click="multiple_choice_click(multiple_choice.active_names[0])">{{multiple_choice.active_names[0]}}</a></p>
+                <p><a class="waves-effect waves-dark-sky-blue btn suggested_name_button btn white lighten-1"  v-on:click="multiple_choice_click(multiple_choice.active_names[1])">{{multiple_choice.active_names[1]}}</a></p>
+                <p><a class="waves-effect waves-reddish-brown btn suggested_name_button btn white lighten-1" v-on:click="multiple_choice_click(multiple_choice.active_names[2])">{{multiple_choice.active_names[2]}}</a></p>
+                <p><a class="waves-effect waves-dark-sky-blue btn suggested_name_button btn white lighten-1" v-on:click="multiple_choice_click(multiple_choice.active_names[3])">{{multiple_choice.active_names[3]}}</a></p>
+<!--                 <p><a class="waves-effect waves-dark-sky-blue btn suggested_name_button btn white lighten-1" v-on:click="multiple_choice_click(multiple_choice.active_names[4])">{{multiple_choice.active_names[4]}}</a></p> -->
+              </div>
+            </div>
+              <p class="small_info_during_asking_feedback" v-if="multiple_choice.first_small_info_active">
+                {{$t("choice.first_small_info")}}
+              </p>
+              <p class="small_info_during_asking_feedback" v-if="multiple_choice.second_small_info_active">
+                {{$t("choice.second_small_info")}}
+              </p>
+      </div>
+      
+      <!-- Waiting for recommendations -->
+      <!-- ******** -->
+      <div id="waiting_for_recommendations" v-show="active_section == 'waiting_for_recommendations'" v-cloak>
+        <div id='white_box'>
+          <h2>{{ $t("waiting_for_recommendations.title") }}</h2>
+          <div class="progress" id="progress_bar_outer">
+            <div class="determinate" id="progress_bar_inner" style="width: 30%">
+            </div>
+          </div>
+          <br>
+          <table style="width:100%">
+            <tr>
+              <td class="icon_column"><div class="div_surrounding_icon"><i class="fa fa-lg fa-trash-o" aria-hidden="true"></i></div></td>
+              <td>{{ $t("waiting_for_recommendations.instructions_1") }}</td> 
+
+            </tr>
+            <tr>
+              <td class="icon_column"><div class="div_surrounding_icon"><i class="fa fa-lg fa-floppy-o" aria-hidden="true"></i></div></td>
+              <td>{{ $t("waiting_for_recommendations.instructions_2") }}</td>
+            </tr>
+          </table>  
+        </div>
+      </div>     
+      
+      <!-- Rcommended names -->
+      <!-- ******** -->
+      <div id="recommended_names" class="container" v-if="active_section == 'recommended_names'" v-cloak>
+        <div class="row header">
+          <div class="col s12 center-align">
+            <h2>{{ $t("results.title") }}</h2>
+            <p class="text_info center-align">{{ $t("results.tagline") }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <div id="recommended_names_list" class="row">
+              
+              <!-- Section one: names 0 tot en met  6 -->
+		      <div class="col s12 m10 offset-m1 l8 offset-l2 name"
+                is="recommended-name-component"
+                v-for="(index, name_info) in recommended_names.active_names.part_1"
+                v-bind:key="name_info.name"
+                v-bind:name="name_info.name"
+                v-bind:order="parseInt(index)"
+                v-bind:starspopular="'stars_' + parseFloat(name_info.score_popular)*10 "
+                v-bind:starsoriginal="'stars_' + parseFloat(name_info.score_original)*10 "
+                v-bind:starsvintage="'stars_' + parseFloat(name_info.score_vintage)*10 "
+                v-bind:starsclassic="'stars_' + parseFloat(name_info.score_classic)*10 "
+                v-bind:scoretrend="parseFloat(name_info.score_trend)"
+                v-bind:meaning="name_info.meaning"
+				v-bind:similar_names="name_info.similar_names"
+                v-bind:ts="name_info.ts"
+                v-bind:graphidtag="'timeseries'+parseInt(index)"
+                v-bind:top="parseInt(name_info.top)"   
+              >
+              </div>
+
+              <!-- Section one: names 7 tot en met 12 -->
+		      <div class="col s12 m10 offset-m1 l8 offset-l2 name"
+                is="recommended-name-component"
+                v-for="(index, name_info) in recommended_names.active_names.part_2"
+                v-bind:key="name_info.name"
+                v-bind:name="name_info.name"
+                v-bind:order="index + 7"
+                v-bind:starspopular="'stars_' + parseFloat(name_info.score_popular)*10 "
+                v-bind:starsoriginal="'stars_' + parseFloat(name_info.score_original)*10 "
+                v-bind:starsvintage="'stars_' + parseFloat(name_info.score_vintage)*10 "
+                v-bind:starsclassic="'stars_' + parseFloat(name_info.score_classic)*10 "
+                v-bind:scoretrend="parseFloat(name_info.score_trend)"
+                v-bind:meaning="name_info.meaning"
+				v-bind:similar_names="name_info.similar_names"
+                v-bind:ts="name_info.ts"
+                v-bind:graphidtag="'timeseries'+index+7"
+                v-bind:top="parseInt(name_info.top)"   
+              >
+              </div>
+              <!-- Rate our suggestions -->  
+<!--
+              <div class="col s12 m10 offset-m1 l8 offset-l2">
+                <div class="name_card">
+                  <div class="name_card_with_smileys">
+                    <div v-if="!recommended_names.user_rated_suggestions">
+                      <p class="title">{{$t("results.score_suggestions.question")}}</p>
+                      <table>
+                        <tr>
+                          <td class="cell_with_smiley">
+                            <p v-on:click="handle_score_suggestions">
+                            <span class="score_button frown_color"><i class="fa fa-frown-o fa-lg" aria-hidden="true"></i></span>
+                            </p>
+                          </td>
+                          <td class="cell_with_smiley">
+                            <p v-on:click="handle_score_suggestions">
+                            <span class="score_button meh_color"><i class="fa fa-meh-o fa-lg" aria-hidden="true"></i></span>
+                            </p>
+                          </td>
+                          <td class="cell_with_smiley">
+                            <p v-on:click="handle_score_suggestions">
+                              <span class="score_button smile_color"><i class="fa fa-smile-o fa-lg" aria-hidden="true"></i></span>
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div v-else>
+                      <p class="title_with_padding_bottom">{{ $t("results.score_suggestions.thanks_for_rating") }} </p>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+-->
+              <!-- Section one: names 13 tot en met 15 -->
+		      <div class="col s12 m10 offset-m1 l8 offset-l2 name"
+                is="recommended-name-component"
+                v-for="(index, name_info) in recommended_names.active_names.part_3"
+                v-bind:key="name_info.name"
+                v-bind:name="name_info.name"
+                v-bind:order="index+13"
+                v-bind:starspopular="'stars_' + parseFloat(name_info.score_popular)*10 "
+                v-bind:starsoriginal="'stars_' + parseFloat(name_info.score_original)*10 "
+                v-bind:starsvintage="'stars_' + parseFloat(name_info.score_vintage)*10 "
+                v-bind:starsclassic="'stars_' + parseFloat(name_info.score_classic)*10 "
+                v-bind:scoretrend="parseFloat(name_info.score_trend)"
+                v-bind:meaning="name_info.meaning"
+				v-bind:similar_names="name_info.similar_names"
+                v-bind:ts="name_info.ts"
+                v-bind:graphidtag="'timeseries'+index+13"
+                v-bind:top="parseInt(name_info.top)"   
+              >
+              </div>
+              
+              <!-- Powered by -->  
+              <div class="col s12 m10 offset-m1 l8 offset-l2" v-show="session_parameters.language=='nl' ">
+                <div class="name_card">
+                  <div class="name_card_brand_box">
+                    <p class="title">{{{ $t("results.powered_by.title") }}} </p>
+                    <p class='tagline'>{{{ $t("results.powered_by.tagline") }}}</p>
+                    <a v-on:click="handle_click_to_brand(mamabaas)"><img src="http://www.mamabaas.be/sites/all/themes/custom/dropsolid-base-7/logo.png" class='logo'></a>
+<!--
+                    <div class="brand_button">
+                        <p class='tagline'>{{{ $t("results.powered_by.tagline") }}}</p>
+                    </div>  
+-->
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Section one: names 16 tot 21 -->
+              <div class="col s12 m10 offset-m1 l8 offset-l2 name" 
+                is="recommended-name-component"
+                v-for="(index, name_info) in recommended_names.active_names.part_4"
+                v-bind:key="name_info.name"
+                v-bind:name="name_info.name"
+                v-bind:order="index + 16"
+                v-bind:starspopular="'stars_' + parseFloat(name_info.score_popular)*10 "
+                v-bind:starsoriginal="'stars_' + parseFloat(name_info.score_original)*10 "
+                v-bind:starsvintage="'stars_' + parseFloat(name_info.score_vintage)*10 "
+                v-bind:starsclassic="'stars_' + parseFloat(name_info.score_classic)*10 "
+                v-bind:scoretrend="parseFloat(name_info.score_trend)"
+                v-bind:meaning="name_info.meaning"
+				v-bind:similar_names="name_info.similar_names"
+                v-bind:ts="name_info.ts"
+                v-bind:graphidtag="'timeseries'+index + 16"
+                v-bind:top="parseInt(name_info.top)"   
+              >
+              </div>
+              <!-- Send by email -->  
+              <div class="col s12 m10 offset-m1 l8 offset-l2" id="waypoint_to_ask_user_score">
+                <div class="name_card">
+                  <div class="name_card_send_by_email">
+                    <div v-if="!recommended_names.send_by_mail">
+                      <p class="title">{{ $t("results.send_by_email.title") }} </p>
+                      <p class="input">{{ $t("results.send_by_email.your_email") }}
+                      <input v-model="email_form.email_address_1" placeholder=""></p>
+                      <p class="input">{{{ $t("results.send_by_email.your_partners_email") }}}
+                      <input v-model="email_form.email_address_2" placeholder=""></p>
+						
+                      <p><input type="checkbox" id="checkbox-conditions" v-model="email_form.accept_conditions" checked disabled><label class="label_w_checkbox" for="checkbox-conditions">{{ $t("results.send_by_email.terms_and_conditions") }}</label></p>
+                      
+				      <p><input type="checkbox" id="checkbox-uptodate" v-model="email_form.keep_me_up_to_date"><label class="label_w_checkbox" for="checkbox-uptodate">{{ $t("results.send_by_email.keep_me_posted") }}</label></p>
+
+                      <div class="form_buttons">
+                        <div class="form_button">
+                          <div class="send_button"  v-on:click="send_suggestions_by_mail">
+                            <i class="fa fa-paper-plane-o" aria-hidden="true"></i> {{ $t("results.send_by_email.send_button") }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div v-if="recommended_names.send_by_mail">
+                      <p class="title_no_margin">{{$t("results.send_by_email.on_its_way") }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Section one: names 22 tot en met 25 -->
+		      <div class="col s12 m10 offset-m1 l8 offset-l2 name"
+                is="recommended-name-component"
+                v-for="(index, name_info) in recommended_names.active_names.part_5"
+                v-bind:key="name_info.name"
+                v-bind:name="name_info.name"
+                v-bind:order="index+17"
+                v-bind:starspopular="'stars_' + parseFloat(name_info.score_popular)*10 "
+                v-bind:starsoriginal="'stars_' + parseFloat(name_info.score_original)*10 "
+                v-bind:starsvintage="'stars_' + parseFloat(name_info.score_vintage)*10 "
+                v-bind:starsclassic="'stars_' + parseFloat(name_info.score_classic)*10 "
+                v-bind:scoretrend="parseFloat(name_info.score_trend)"
+                v-bind:meaning="name_info.meaning"
+				v-bind:similar_names="name_info.similar_names"
+                v-bind:ts="name_info.ts"
+                v-bind:graphidtag="'timeseries'+index + 17"
+                v-bind:top="parseInt(name_info.top)"   
+              >
+              </div>
+              
+              <!-- Section one: names 25 tot en met 29 -->
+		      <div class="col s12 m10 offset-m1 l8 offset-l2 name" id="waypoint_safety"
+                is="recommended-name-component"
+                v-for="(index, name_info) in recommended_names.active_names.part_6"
+                v-bind:key="name_info.name"
+                v-bind:name="name_info.name"
+                v-bind:order="index+25"
+                v-bind:starspopular="'stars_' + parseFloat(name_info.score_popular)*10 "
+                v-bind:starsoriginal="'stars_' + parseFloat(name_info.score_original)*10 "
+                v-bind:starsvintage="'stars_' + parseFloat(name_info.score_vintage)*10 "
+                v-bind:starsclassic="'stars_' + parseFloat(name_info.score_classic)*10 "
+                v-bind:scoretrend="parseFloat(name_info.score_trend)"
+                v-bind:meaning="name_info.meaning"
+				v-bind:similar_names="name_info.similar_names"
+                v-bind:ts="name_info.ts"
+                v-bind:graphidtag="'timeseries'+index+25"
+                v-bind:top="parseInt(name_info.top)"   
+              >
+              </div>
+              
+              <!-- Share our app -->  
+              <div class="col s12 m10 offset-m1 l8 offset-l2">
+                <div class="name_card">
+                  <div class="name_card_request_to_share">
+                    <p class="title">{{ $t("results.ask_to_share.title") }} </p>
+                    <p>{{{ $t("results.ask_to_share.line_1") }}}</p>
+                    <div class="social_media_buttons">
+                      <div class="facebook_button" v-on:click="register_click('facebook_share')">
+                        <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnamesilike.com" target="_blank"><i class="fa fa-facebook-square"></i>Share</a>
+                      </div>
+                      <div class="whatsapp_button" v-on:click="register_click('whatsapp_share')" v-if="session_parameters.screen_height < 850">
+                        <a class="whatsapp" href="whatsapp://send?text=Met www.namesilike.com was naar een babynaam zoeken nog nooit zo leuk" data-action="share/whatsapp/share" ><i class="fa fa-whatsapp" aria-hidden="true" ></i>Share</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+        <!-- Email share button -->
+<!--
+        <div id="share" v-if="recommended_names.email_button_visible">
+          <a class="waves-effect waves-white btn btn white lighten-1 pulse" v-on:click="open_email_popup"><i class="fa fa-floppy-o" aria-hidden="true" ></i> {{ $t("results.share") }}</a>
+        </div>
+-->
+        
+        <!-- Popup modal to ask user score of the names -->
+        <div class="popup_modal_outer_div" v-if="recommended_names.popup_score_suggestions || recommended_names.popup_share || recommended_names.ask_what_can_we_improve" v-cloak>
+          <div class="bg"></div>
+          <div class="popup_modal">
+            <div class="score_suggestions" v-show="recommended_names.popup_score_suggestions">
+              <p class="title">{{$t("results.score_suggestions.question")}}</p>
+              <table>
+                <tr>
+                  <td class="cell_with_smiley">
+                    <p v-on:click="handle_score_suggestions('frown')">
+                    <span class="score_button frown_color"><i class="fa fa-frown-o fa-lg" aria-hidden="true"></i></span>
+                    </p>
+                  </td>
+                  <td class="cell_with_smiley">
+                    <p v-on:click="handle_score_suggestions('meh')">
+                    <span class="score_button meh_color"><i class="fa fa-meh-o fa-lg" aria-hidden="true"></i></span>
+                    </p>
+                  </td>
+                  <td class="cell_with_smiley">
+                    <p v-on:click="handle_score_suggestions('smile')">
+                      <span class="score_button smile_color"><i class="fa fa-smile-o fa-lg" aria-hidden="true"></i></span>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+              <p class="center-align">{{{$t("results.score_suggestions.extra_info")}}}</p>
+            </div>
+          </div>
+        </div>
+          
+<!--
+          <div class="popup_modal" v-show="recommended_names.ask_what_can_we_improve" >
+            <div class="what_can_we_improve">
+              <p class="title">{{$t("results.ask_what_can_we_improve.title")}}</p>
+              <div class="input-field">
+                
+                <input placeholder='{{ $t("results.ask_what_can_we_improve.suggestion") }}' id="first_name" type="text" class="validate" v-model="recommended_names.ask_what_can_we_improve.user_input">
+                <label for="first_name"></label>
+                
+              </div>
+              <div class="left_button">
+                <div class="skip"  v-on:click="handle_what_can_we_improve(true)">
+                  <i class="fa fa-caret-right" aria-hidden="true"></i> Overslaan
+                </div>
+              </div>
+              <div class="left_button">
+                <div class="send_suggestion"  v-on:click="handle_what_can_we_improve(false)">
+                  <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Verstuur
+                </div>
+              </div>
+            </div>
+          </div>
+-->
+          
+          <!-- Popup modal to ask user to share v-on:click="record_facebook_share" -->
+<!--
+          <div class="popup_modal" v-show="recommended_names.popup_share">
+            <div class="centered">
+              <p class="title">{{ $t("results.score_suggestions.ask_to_share.title") }} </p>
+              <p class="request_to_share">{{ $t("results.score_suggestions.ask_to_share.line_1") }}</p>
+		      <div class="social_media_buttons">
+				<div class="facebook_button">
+                  <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnamesilike.com" target="_blank"><i class="fa fa-facebook-square"></i>Share</a>
+                </div>
+                  <a href="whatsapp://send?text=Met www.namesilike.com was naar een babynaam zoeken nog nooit zo leuk" data-action="share/whatsapp/share" class="whatsapp_button"><i class="fa fa-whatsapp" aria-hidden="true" ></i>Share</a>
+		      </div>
+              <p class="title">{{ $t("results.score_suggestions.ask_to_share.thank_you") }}</p>
+            </div>
+          </div>
+        </div> 
+-->
+        
+        <!-- Popup to send the list by email -->
+<!--
+        <div class="popup_modal_outer_div" v-show="recommended_names.send_by_mail">
+          <div class="popup_modal">
+            <div class="send_by_email">
+              <p class="title">{{ $t("share.title") }}</p>
+              <p class="input">{{ $t("share.your_email") }}
+              <input v-model="email_form.email_address_1" placeholder=""></p>
+              <p class="input">{{ $t("share.your_partners_email") }}
+              <input v-model="email_form.email_address_2" placeholder=""></p>
+              <input type="checkbox" id="checkbox-conditions" v-model="email_form.accept_conditions"><label for="checkbox-conditions">{{ $t("share.terms_and_conditions") }}</label><br>
+              <input type="checkbox" id="checkbox-uptodate" v-model="email_form.keep_me_up_to_date"><label for="checkbox-uptodate">{{ $t("share.keep_me_posted") }}</label>
+
+              <div class="form_buttons">
+                <div class="left_button">
+                  <div class="maybe_later"  v-on:click="return_to_results">
+                    {{ $t("share.maybe_later") }}
+                  </div>
+                </div>
+                <div class="left_button">
+                  <div class="send_button"  v-on:click="send_suggestions_by_mail">
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Verstuur
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+-->
+        
+        
+      </div>
+      
+
+
+      <script src="https://cdn.jsdelivr.net/webfontloader/latest/webfontloader.js"></script>
+
+      <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+      <script type="text/javascript" src="javascript/jquery.waypoints.js"></script>
+      <script type="text/javascript" src="javascript/materialize.min.js"></script>
+      <script type="text/javascript" src="javascript/vue.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.i18n/4.10.0/vue-i18n.min.js"></script>
+      <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+      <script type="text/javascript" src="javascript/text_in_different_languages.js"></script>
+      <script type="text/javascript" src="javascript/vue_implement.js"></script>
+      <script type="text/javascript" src="javascript/session.js"></script>
+      <script type="text/javascript" src="javascript/prefixfree.js"></script>
+      
+      
+      
+      <!-- Begin Inspectlet Embed Code -->
+      <script type="text/javascript" id="inspectletjs">
+        if(!debug){
+          window.__insp = window.__insp || [];
+            __insp.push(['wid', 263738354]);
+            (function() {
+            function ldinsp(){if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+            setTimeout(ldinsp, 500); document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+            })();         
+        }
+
+      </script>
+      <!-- End Inspectlet Embed Code -->
+      
+      <!-- Whatsapp code -->
+      <script type="text/javascript">
+            if(typeof wabtn4fg==="undefined"){wabtn4fg=1;h=document.head||document.getElementsByTagName("head")[0],s=document.createElement("script");s.type="text/javascript";s.src="javascript/whatsapp-button.js";h.appendChild(s);}
+      </script>
+
+      <!-- Begin Googe Analytics -->
+      <script>
+        if(!debug){
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-103141746-1', 'auto');
+          ga('send', 'pageview'); 
+        }
+      </script>
+    </body>
+
+    
+
+
+  </html>
+

@@ -1,0 +1,115 @@
+/* Mobile-first flexbox-based grid.
+
+   This grid has two modes: mobile and desktop. The mobile mode is the default,
+   and it switches to desktop starting at a tablet resolution.
+
+   Grid gutter width `gutter-mobile-[int]` is the padding left and right of the
+   grid on both mobile and desktop as an integer multiple of 1vw, where 1vw is
+   1% of the viewport width. May be overruled by `gutter-desktop-[int]` on
+   desktop.
+
+   Cell spacing `colspacing-mobile-[int]` is the vertical padding between cells
+   in a grid on mobile, also an integer multiple of 1vw. May be overruled by
+   `colspacing-desktop-[int]` on desktop, were it applies to the horizontal
+   space between cells.
+
+   Row spacing `rowspacing-mobile-[int]` is the vertical padding between rows
+   in a grid on mobile, also an integer multiple of 1vw. May be overruled by
+   `rowspacing-desktop-[int]` on desktop.
+
+   Example HTML:
+        <div class="grid gutter-mobile-3 gutter-desktop-12 rowspacing-mobile-6
+            rowspacing-desktop-3 colspacing-mobile-3 colspacing-desktop-3">
+            <div class="row">
+                <div class="col width-6-of-12">A</div>
+                <div class="col">B</div>
+                <div class="col">C</div>
+            </div>
+            <div class="row">
+                <div class="col">A</div>
+                <div class="col width-8-of-12">B</div>
+                <div class="col">C</div>
+            </div>
+        </div>
+*/
+
+/* Default grid configuration. */
+
+$grid-spacing-unit: 1vw !default;
+$grid-spacing-max-steps: 24 !default;
+$grid-colwidth-max-steps: 12 !default;
+
+/* Mobile grid. */
+
+.row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.col {
+    flex-grow: 1;
+}
+
+@for $i from 1 through $grid-spacing-max-steps {
+    .grid.gutter-mobile-#{$i} > .row {
+        padding-left: $i * $grid-spacing-unit;
+        padding-right: $i * $grid-spacing-unit;
+    }
+}
+@for $i from 1 through $grid-spacing-max-steps {
+    .grid.rowspacing-mobile-#{$i} > .row {
+        padding-top: $i * $grid-spacing-unit;
+        padding-bottom: $i * $grid-spacing-unit;
+    }
+}
+
+@media #{$up-to-tablet} {
+    @for $i from 1 through $grid-spacing-max-steps {
+        .grid.colspacing-mobile-#{$i} > .row > .col:not(:first-child) {
+            margin-top: $i * $grid-spacing-unit;
+        }
+    }
+}
+
+/* Desktop grid. */
+
+@media #{$tablet-and-up} {
+    .row {
+        flex-direction: row;
+    }
+    @for $i from 0 through $grid-spacing-max-steps {
+        .grid.gutter-desktop-#{$i} > .row {
+            padding-left: $i * $grid-spacing-unit;
+            padding-right: $i * $grid-spacing-unit;
+        }
+    }
+    @for $i from 0 through $grid-spacing-max-steps {
+        .grid.rowspacing-desktop-#{$i} > .row {
+            padding-top: $i * $grid-spacing-unit;
+            padding-bottom: $i * $grid-spacing-unit;
+        }
+    }
+    @for $i from 0 through $grid-spacing-max-steps {
+        .grid.colspacing-mobile-#{$i} > .row > .col:not(:first-child) {
+            margin-left: $i * $grid-spacing-unit;
+        }
+    }
+    @for $i from 0 through $grid-spacing-max-steps {
+        .grid.colspacing-desktop-#{$i} > .row > .col:not(:first-child) {
+            margin-left: $i * $grid-spacing-unit;
+        }
+    }
+    @for $i from 1 through $grid-colwidth-max-steps {
+        .col.width-#{$i}-of-#{$grid-colwidth-max-steps} {
+            width: $i / $grid-colwidth-max-steps * 100%;
+        }
+    }
+    /* Utility class to vertically align columns to the center or top instead
+       of the default behaviour of stretching them to fill the row. */
+    .row.align-items-center {
+        align-items: center;
+    }
+    .row.align-items-top {
+        align-items: flex-start;
+    }
+}

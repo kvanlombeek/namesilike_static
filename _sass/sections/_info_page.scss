@@ -1,0 +1,47 @@
+#info_page {
+  
+    padding-top: 15vw;
+
+    @media (max-width: 540px) {
+        padding-top: 25vw;
+    }
+
+    .title_and_tagline{
+        margin-bottom: 0px;
+    }
+  
+    #timeseries_graph{
+        width: 100%;
+    }
+    .container_profile_pic{
+        padding: 0.5em;
+        width: 30%;
+        vertical-align: top;
+    }
+    .profile_picture{
+        border-radius: 50%;
+        width:100%;
+        padding: 0.5em;
+        
+    }
+    .container_profile_bio{
+        padding: 0.5em;
+    }
+    .info_text{
+      text-align: left;
+      margin-top: -1em;
+      font-size: 1.2em;
+    }
+    .social_media_link{
+        font-size: 2em;
+        margin-right: 0.5em;
+        cursor: pointer;
+           
+    }
+    .link{
+        cursor: pointer;
+        
+    }
+    
+ 
+}
